@@ -1,0 +1,157 @@
+/* =====================================================
+   Calculus I Textbook
+   Texas A&M University–San Antonio
+   ===================================================== */
+
+/* ---------- Body ---------- */
+
+body {
+    font-family: "Segoe UI", "Helvetica", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* ---------- Chapter Heading ---------- */
+
+h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #68253B;          /* TAMUSA Madala Maroon */
+    font-size: 2.2em;
+
+    border-bottom: 3px solid #d0d0d0;
+
+    padding-bottom: 12px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+h1::after {
+
+    content: "";
+
+    width: 175px;
+    height: 175px;
+
+    background-image: url("Figures/tamusalogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    flex-shrink: 0;
+}
+
+/* ---------- Section Headings ---------- */
+
+h2 {
+
+    color: #003366;
+
+    margin-top: 35px;
+}
+
+h3 {
+
+    color: #005588;
+}
+
+/* ---------- Mathematics ---------- */
+
+.MathJax,
+.katex {
+    font-size: 110%;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
+}
+
+th {
+
+    background: #003366;
+
+    color: white;
+}
+
+/* ---------- Videos ---------- */
+
+video {
+
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 90%;
+}
+
+/* ---------- Images ---------- */
+
+img {
+
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------- Callouts ---------- */
+
+.callout {
+
+    border-radius: 10px;
+}
+
+/* ---------- Quiz ---------- */
+
+.quiz {
+
+    background: #f5f5f5;
+
+    padding: 20px;
+
+    border-radius: 8px;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+
+    font-size: 0.9em;
+
+    color: gray;
+}
+
+/* Thought Experiment Box */
+
+div.thought {
+    background-color: #fff8dc;
+    border-left: 8px solid #800000;
+    border-radius: 8px;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+}
+
+div.thought::before {
+    content: "🤔 Thought Experiment";
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #800000;
+    margin-bottom: 0.75em;
+}
+
+div.thought details {
+    margin-top: 1em;
+}

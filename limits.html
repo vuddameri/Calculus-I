@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>limits</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-976e772faaab12199cc3d02ac516a404.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/quizdown-0.6.0/quizdown.js"></script>
+<script src="site_libs/quarto-contrib/quizdown-0.6.0/quizdownKatex.js"></script>
+<script src="site_libs/quarto-contrib/quizdown-0.6.0/quizdownHighlight.js"></script>
+<script src="site_libs/quarto-contrib/quizdown-0.6.0/quizdown-init.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#limits" id="toc-limits" class="nav-link active" data-scroll-target="#limits"><span class="header-section-number">1</span> Limits</a>
+  <ul class="collapse">
+  <li><a href="#motivation-to-study-limits" id="toc-motivation-to-study-limits" class="nav-link" data-scroll-target="#motivation-to-study-limits"><span class="header-section-number">1.1</span> Motivation to study Limits</a></li>
+  <li><a href="#mathematical-definition-of-limits" id="toc-mathematical-definition-of-limits" class="nav-link" data-scroll-target="#mathematical-definition-of-limits"><span class="header-section-number">1.2</span> Mathematical Definition of Limits</a></li>
+  <li><a href="#important-properties-of-limits" id="toc-important-properties-of-limits" class="nav-link" data-scroll-target="#important-properties-of-limits"><span class="header-section-number">1.3</span> Important Properties of Limits</a>
+  <ul class="collapse">
+  <li><a href="#limit-of-a-constant" id="toc-limit-of-a-constant" class="nav-link" data-scroll-target="#limit-of-a-constant"><span class="header-section-number">1.3.1</span> 1. Limit of a Constant</a></li>
+  <li><a href="#limit-of-the-identity-function" id="toc-limit-of-the-identity-function" class="nav-link" data-scroll-target="#limit-of-the-identity-function"><span class="header-section-number">1.3.2</span> 2. Limit of the Identity Function</a></li>
+  <li><a href="#constant-multiple-law" id="toc-constant-multiple-law" class="nav-link" data-scroll-target="#constant-multiple-law"><span class="header-section-number">1.3.3</span> 3. Constant Multiple Law</a></li>
+  <li><a href="#sum-law" id="toc-sum-law" class="nav-link" data-scroll-target="#sum-law"><span class="header-section-number">1.3.4</span> 4. Sum Law</a></li>
+  <li><a href="#difference-law" id="toc-difference-law" class="nav-link" data-scroll-target="#difference-law"><span class="header-section-number">1.3.5</span> 5. Difference Law</a></li>
+  <li><a href="#product-law" id="toc-product-law" class="nav-link" data-scroll-target="#product-law"><span class="header-section-number">1.3.6</span> 6. Product Law</a></li>
+  <li><a href="#quotient-law" id="toc-quotient-law" class="nav-link" data-scroll-target="#quotient-law"><span class="header-section-number">1.3.7</span> 7. Quotient Law</a></li>
+  <li><a href="#power-law" id="toc-power-law" class="nav-link" data-scroll-target="#power-law"><span class="header-section-number">1.3.8</span> 8. Power Law</a></li>
+  <li><a href="#root-law" id="toc-root-law" class="nav-link" data-scroll-target="#root-law"><span class="header-section-number">1.3.9</span> 9. Root Law</a></li>
+  <li><a href="#polynomial-functions" id="toc-polynomial-functions" class="nav-link" data-scroll-target="#polynomial-functions"><span class="header-section-number">1.3.10</span> 10. Polynomial Functions</a></li>
+  <li><a href="#rational-functions" id="toc-rational-functions" class="nav-link" data-scroll-target="#rational-functions"><span class="header-section-number">1.3.11</span> 11. Rational Functions</a></li>
+  </ul></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">1.4</span> Worked Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-constant-law" id="toc-example-1-constant-law" class="nav-link" data-scroll-target="#example-1-constant-law"><span class="header-section-number">1.4.1</span> Example 1 — Constant Law</a></li>
+  <li><a href="#example-2-identity-function" id="toc-example-2-identity-function" class="nav-link" data-scroll-target="#example-2-identity-function"><span class="header-section-number">1.4.2</span> Example 2 — Identity Function</a></li>
+  <li><a href="#example-3-constant-multiple-law" id="toc-example-3-constant-multiple-law" class="nav-link" data-scroll-target="#example-3-constant-multiple-law"><span class="header-section-number">1.4.3</span> Example 3 — Constant Multiple Law</a></li>
+  <li><a href="#example-4-sum-law" id="toc-example-4-sum-law" class="nav-link" data-scroll-target="#example-4-sum-law"><span class="header-section-number">1.4.4</span> Example 4 — Sum Law</a></li>
+  <li><a href="#example-5-difference-law" id="toc-example-5-difference-law" class="nav-link" data-scroll-target="#example-5-difference-law"><span class="header-section-number">1.4.5</span> Example 5 — Difference Law</a></li>
+  <li><a href="#example-6-product-law" id="toc-example-6-product-law" class="nav-link" data-scroll-target="#example-6-product-law"><span class="header-section-number">1.4.6</span> Example 6 — Product Law</a></li>
+  <li><a href="#example-7-quotient-law" id="toc-example-7-quotient-law" class="nav-link" data-scroll-target="#example-7-quotient-law"><span class="header-section-number">1.4.7</span> Example 7 — Quotient Law</a></li>
+  <li><a href="#example-8-polynomial-function" id="toc-example-8-polynomial-function" class="nav-link" data-scroll-target="#example-8-polynomial-function"><span class="header-section-number">1.4.8</span> Example 8 — Polynomial Function</a></li>
+  <li><a href="#example-9-rational-function" id="toc-example-9-rational-function" class="nav-link" data-scroll-target="#example-9-rational-function"><span class="header-section-number">1.4.9</span> Example 9 — Rational Function</a></li>
+  </ul></li>
+  <li><a href="#indeterminate-forms" id="toc-indeterminate-forms" class="nav-link" data-scroll-target="#indeterminate-forms"><span class="header-section-number">1.5</span> Indeterminate Forms</a>
+  <ul class="collapse">
+  <li><a href="#how-to-tackle-indeterminate-forms" id="toc-how-to-tackle-indeterminate-forms" class="nav-link" data-scroll-target="#how-to-tackle-indeterminate-forms"><span class="header-section-number">1.5.1</span> How to Tackle Indeterminate Forms?</a></li>
+  </ul></li>
+  <li><a href="#limits-of-trignometric-functions" id="toc-limits-of-trignometric-functions" class="nav-link" data-scroll-target="#limits-of-trignometric-functions"><span class="header-section-number">1.6</span> Limits of Trignometric Functions</a></li>
+  <li><a href="#interactive-exploration-sinxx" id="toc-interactive-exploration-sinxx" class="nav-link" data-scroll-target="#interactive-exploration-sinxx"><span class="header-section-number">1.7</span> Interactive Exploration: <span class="math inline">\(\sin(x)/x\)</span></a></li>
+  <li><a href="#limits-of-exponential-functions" id="toc-limits-of-exponential-functions" class="nav-link" data-scroll-target="#limits-of-exponential-functions"><span class="header-section-number">1.8</span> Limits of Exponential Functions</a></li>
+  <li><a href="#interactive-exploration-lim_x-rightarrow-0fracex-1x" id="toc-interactive-exploration-lim_x-rightarrow-0fracex-1x" class="nav-link" data-scroll-target="#interactive-exploration-lim_x-rightarrow-0fracex-1x"><span class="header-section-number">1.9</span> Interactive Exploration: <span class="math inline">\(\lim_{x \rightarrow 0}\frac{e^x-1}{x}\)</span></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.10</span> Summary</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding"><span class="header-section-number">1.11</span> Check Your Understanding</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="limits" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Limits</h1>
+<section id="motivation-to-study-limits" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="motivation-to-study-limits"><span class="header-section-number">1.1</span> Motivation to study Limits</h2>
+<p>There are many instances when we cannot get an exact measurement at a given point in time or at a required location. In such cases, it is natural for us to take a measurement at a nearby location or time and use that as an estimate. This idea is mathematically captured using the idea of a Limit.</p>
+<video controls="" width="700">
+<source src="Videos/elevator.webm" type="video/webm">
+</video>
+<p>The elevator is an important example of a limit. When we press the button to go to a certain floor, the elevator’s goal is to make sure the floor of the elevator is as close to the floor of the building. The elevator floor may not always be perfectly lines with the building’s floor but as long as it is close enough, it will work just fine. Elevator controls make sure that the differences in the elevations of the floor of the elevator and the building approach zero (or get as close to each other as possible).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Limits come in to play because we cannot make precise measurements at a point of interest. We can only estimate the value within a certain limit.</p>
+</div>
+</div>
+</section>
+<section id="mathematical-definition-of-limits" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="mathematical-definition-of-limits"><span class="header-section-number">1.2</span> Mathematical Definition of Limits</h2>
+<p>In mathematics we define limits using the following nomenclature:</p>
+<p><span class="math display">\[
+\lim_{x \rightarrow a} f(x)
+\]</span> What the above equation means is that we want to find the limit of the function f(x) as x <strong>tends towards</strong> the value ‘a’. If ‘a’ is a real number we can approach (or tend towards) either from a lower number ‘a-’ or a higher number ‘a+’ that are not equal to ‘a’ but close enough.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>🤔 Thought Experiment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose your Calculus class is officially scheduled from <strong>8:00 AM to 8:50 AM</strong>.</p>
+<p>Would it be mathematically more appropriate to describe the class as</p>
+<ul>
+<li>beginning <strong>at exactly 8:00 AM</strong> and ending <strong>at exactly 8:50 AM</strong>, or</li>
+<li>beginning as time <strong>approaches</strong> 8:00 AM and ending as time <strong>approaches</strong> 8:50 AM?</li>
+</ul>
+<p>Think carefully before revealing the answer.</p>
+<details>
+<summary>
+<strong>Show Answer</strong>
+</summary>
+<p>A <strong>limit</strong> describes what happens <strong>as we approach</strong> a point, not necessarily what happens <strong>at</strong> the point itself.</p>
+<p>Officially, the class begins at <strong>8:00 AM</strong> and ends at <strong>8:50 AM</strong>. In practice, however, students may arrive early, the instructor may wait briefly before beginning, and the class may end a minute or two after the scheduled time.</p>
+<p>This illustrates an important distinction in calculus:</p>
+<ul>
+<li>A <strong>limit</strong> describes behavior <strong>near</strong> a point.</li>
+<li>A <strong>function value</strong> describes what happens <strong>at</strong> the point.</li>
+</ul>
+<p>Sometimes these are the same, sometimes they are different. Calculus helps make this distinction.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="important-properties-of-limits" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="important-properties-of-limits"><span class="header-section-number">1.3</span> Important Properties of Limits</h2>
+<p>The following properties allow us to evaluate many limits without using the formal definition. They are collectively known as the <strong>Limit Laws</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>⭐ Key Idea
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the limits of two functions exist individually, then the limit of many combinations of those functions can be found by simply applying the corresponding algebraic operation.</p>
+</div>
+</div>
+<section id="limit-of-a-constant" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="limit-of-a-constant"><span class="header-section-number">1.3.1</span> 1. Limit of a Constant</h3>
+<p>If (c) is a constant,</p>
+<p><span class="math display">\[
+\lim_{x \rightarrow a} c = c
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 5} 8 = 8
+\]</span></p>
+<hr>
+</section>
+<section id="limit-of-the-identity-function" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="limit-of-the-identity-function"><span class="header-section-number">1.3.2</span> 2. Limit of the Identity Function</h3>
+<p><span class="math display">\[
+\lim_{x\rightarrow a} x = a
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 7} x = 7
+\]</span></p>
+<hr>
+</section>
+<section id="constant-multiple-law" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="constant-multiple-law"><span class="header-section-number">1.3.3</span> 3. Constant Multiple Law</h3>
+<p>If (c) is a constant,</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a} c\,f(x)
+=
+c\lim_{x\rightarrow a}f(x)
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}5x
+=
+5\left(\lim_{x\rightarrow2}x\right)
+=
+10
+\]</span></p>
+<hr>
+</section>
+<section id="sum-law" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="sum-law"><span class="header-section-number">1.3.4</span> 4. Sum Law</h3>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}[f(x)+g(x)]
+=
+\lim_{x\rightarrow a}f(x)
++
+\lim_{x\rightarrow a}g(x)
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow3}(x^2+2x)
+=
+9+6
+=
+15
+\]</span></p>
+<hr>
+</section>
+<section id="difference-law" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="difference-law"><span class="header-section-number">1.3.5</span> 5. Difference Law</h3>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}[f(x)-g(x)]
+=
+\lim_{x\rightarrow a}f(x)
+-
+\lim_{x\rightarrow a}g(x)
+\]</span></p>
+<hr>
+</section>
+<section id="product-law" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="product-law"><span class="header-section-number">1.3.6</span> 6. Product Law</h3>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}[f(x)g(x)]
+=
+\left(\lim_{x\rightarrow a}f(x)\right)
+\left(\lim_{x\rightarrow a}g(x)\right)
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}x(x+1)
+=
+2(3)
+=
+6
+\]</span></p>
+<hr>
+</section>
+<section id="quotient-law" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="quotient-law"><span class="header-section-number">1.3.7</span> 7. Quotient Law</h3>
+<p>Provided</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}g(x)\neq0,
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}
+\frac{f(x)}{g(x)}
+=
+\frac{\lim_{x\rightarrow a}f(x)}
+{\lim_{x\rightarrow a}g(x)}
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow4}
+\frac{x+1}{x-2}
+=
+\frac{5}{2}
+\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistake
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Quotient Law <strong>cannot</strong> be applied if the denominator approaches zero.</p>
+<p>Expressions such as</p>
+<p><span class="math display">\[
+\frac{0}{0}
+\qquad\text{or}\qquad
+\frac{5}{0}
+\]</span></p>
+<p>require additional analysis.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-law" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="power-law"><span class="header-section-number">1.3.8</span> 8. Power Law</h3>
+<p>For any positive integer (n),</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}[f(x)]^n
+=
+\left(\lim_{x\rightarrow a}f(x)\right)^n
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow3}x^4
+=
+81
+\]</span></p>
+<hr>
+</section>
+<section id="root-law" class="level3" data-number="1.3.9">
+<h3 data-number="1.3.9" class="anchored" data-anchor-id="root-law"><span class="header-section-number">1.3.9</span> 9. Root Law</h3>
+<p>Provided the root is defined,</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}\sqrt[n]{f(x)}
+=
+\sqrt[n]{\lim_{x\rightarrow a}f(x)}
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow9}\sqrt{x}
+=
+3
+\]</span></p>
+<hr>
+</section>
+<section id="polynomial-functions" class="level3" data-number="1.3.10">
+<h3 data-number="1.3.10" class="anchored" data-anchor-id="polynomial-functions"><span class="header-section-number">1.3.10</span> 10. Polynomial Functions</h3>
+<p>For any polynomial,</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}P(x)
+=
+P(a)
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}
+(x^3-4x+1)
+=
+8-8+1
+=
+1
+\]</span></p>
+<hr>
+</section>
+<section id="rational-functions" class="level3" data-number="1.3.11">
+<h3 data-number="1.3.11" class="anchored" data-anchor-id="rational-functions"><span class="header-section-number">1.3.11</span> 11. Rational Functions</h3>
+<p>If (Q(a)),</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow a}
+\frac{P(x)}{Q(x)}
+=
+\frac{P(a)}{Q(a)}
+\]</span></p>
+<p><strong>Example</strong></p>
+<p><span class="math display">\[
+\lim_{x\rightarrow1}
+\frac{x^2+1}{x+2}
+=
+\frac23
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Always try <strong>direct substitution first</strong>.</p>
+<p>If substitution does <strong>not</strong> produce an indeterminate form such as</p>
+<p><span class="math display">\[
+\frac00,
+\qquad
+\infty-\infty,
+\qquad
+0\cdot\infty,
+\]</span></p>
+<p>then the limit can usually be evaluated immediately using the Limit Laws.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="worked-examples" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">1.4</span> Worked Examples</h2>
+<section id="example-1-constant-law" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="example-1-constant-law"><span class="header-section-number">1.4.1</span> Example 1 — Constant Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 3} 12
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Since the function is a constant,</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 3}12 = 12.
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-2-identity-function" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="example-2-identity-function"><span class="header-section-number">1.4.2</span> Example 2 — Identity Function</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 8}x
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Using the Identity Law,</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow8}x=8.
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-3-constant-multiple-law" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="example-3-constant-multiple-law"><span class="header-section-number">1.4.3</span> Example 3 — Constant Multiple Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow4}7x
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Apply the Constant Multiple Law.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x\rightarrow4}7x
+&amp;=7\lim_{x\rightarrow4}x\\
+&amp;=7(4)\\
+&amp;=28.
+\end{aligned}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-4-sum-law" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="example-4-sum-law"><span class="header-section-number">1.4.4</span> Example 4 — Sum Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}(x^2+5x)
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Using the Sum Law,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x\rightarrow2}(x^2+5x)
+&amp;=\lim_{x\rightarrow2}x^2+\lim_{x\rightarrow2}5x\\
+&amp;=4+10\\
+&amp;=14.
+\end{aligned}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-5-difference-law" class="level3" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="example-5-difference-law"><span class="header-section-number">1.4.5</span> Example 5 — Difference Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow3}(2x^2-x)
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x\rightarrow3}(2x^2-x)
+&amp;=2(9)-3\\
+&amp;=15.
+\end{aligned}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-6-product-law" class="level3" data-number="1.4.6">
+<h3 data-number="1.4.6" class="anchored" data-anchor-id="example-6-product-law"><span class="header-section-number">1.4.6</span> Example 6 — Product Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}x(x+4)
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x\rightarrow2}x(x+4)
+&amp;=\left(\lim_{x\rightarrow2}x\right)
+\left(\lim_{x\rightarrow2}(x+4)\right)\\
+&amp;=2(6)\\
+&amp;=12.
+\end{aligned}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-7-quotient-law" class="level3" data-number="1.4.7">
+<h3 data-number="1.4.7" class="anchored" data-anchor-id="example-7-quotient-law"><span class="header-section-number">1.4.7</span> Example 7 — Quotient Law</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow5}\frac{x+3}{2x-1}
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Since the denominator is not zero,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x\rightarrow5}\frac{x+3}{2x-1}
+&amp;=\frac{5+3}{10-1}\\
+&amp;=\frac89.
+\end{aligned}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-8-polynomial-function" class="level3" data-number="1.4.8">
+<h3 data-number="1.4.8" class="anchored" data-anchor-id="example-8-polynomial-function"><span class="header-section-number">1.4.8</span> Example 8 — Polynomial Function</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}(x^3-4x+5)
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Polynomials are continuous, so substitute directly.</p>
+<p><span class="math display">\[
+2^3-4(2)+5=8-8+5=5.
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-9-rational-function" class="level3" data-number="1.4.9">
+<h3 data-number="1.4.9" class="anchored" data-anchor-id="example-9-rational-function"><span class="header-section-number">1.4.9</span> Example 9 — Rational Function</h3>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow3}\frac{x^2+1}{x+1}
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Since the denominator is not zero,</p>
+<p><span class="math display">\[
+\frac{3^2+1}{3+1}
+=
+\frac{10}{4}
+=
+\frac52.
+\]</span></p>
+</details>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>⭐ Observation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that <strong>every one of these examples was solved by direct substitution</strong>.</p>
+<p>This works because none of the substitutions produced an indeterminate form such as</p>
+<p><span class="math display">\[
+\frac00.
+\]</span></p>
+<p>When direct substitution produces an indeterminate form, we need additional techniques, which will be introduced in the next section.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="indeterminate-forms" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="indeterminate-forms"><span class="header-section-number">1.5</span> Indeterminate Forms</h2>
+<p>In the previous section, we saw that many limits can be evaluated simply by substituting the value of (x) into the function. Unfortunately, direct substitution does not always produce a meaningful answer. Sometimes it produces an <strong>indeterminate form</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Idea
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An <strong>indeterminate form</strong> does <strong>not</strong> mean that the limit does not exist.</p>
+<p>Instead, it means that <strong>direct substitution is inconclusive</strong>, and additional mathematical techniques are required to determine the limit.</p>
+</div>
+</div>
+<p>The most common indeterminate forms encountered in Calculus I are</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indeterminate Form</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\displaystyle \frac{0}{0}\)</span></td>
+<td>Most common; often resolved by factoring or algebraic simplification.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\displaystyle \frac{\infty}{\infty}\)</span></td>
+<td>Common when studying limits at infinity.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0\cdot\infty\)</span></td>
+<td>Product of two competing quantities.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\infty-\infty\)</span></td>
+<td>Difference of two unbounded quantities.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0^0\)</span></td>
+<td>Exponential indeterminate form.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1^\infty\)</span></td>
+<td>Exponential indeterminate form.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\infty^0\)</span></td>
+<td>Exponential indeterminate form.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistake
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many students mistakenly believe that</p>
+<p><span class="math display">\[
+\frac00 = 1.
+\]</span></p>
+<p>This is <strong>not true</strong>.</p>
+<p>The expression</p>
+<p><span class="math display">\[
+\frac00
+\]</span></p>
+<p>is <strong>undefined</strong> and is called an <strong>indeterminate form</strong> because many different limits can produce it.</p>
+</div>
+</div>
+<section id="how-to-tackle-indeterminate-forms" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="how-to-tackle-indeterminate-forms"><span class="header-section-number">1.5.1</span> How to Tackle Indeterminate Forms?</h3>
+<p>When the direction substitution leads to <span class="math inline">\(\frac{0}{0}\)</span> then we have to get clever about obtaining limits. One approach is to simplify the expression before taking the limits. There are many techniques to simplify including factoring, rationalization, and L’Hôpital’s Rule. Let us first look at some motivating examples.</p>
+<section id="example-1" class="level4" data-number="1.5.1.1">
+<h4 data-number="1.5.1.1" class="anchored" data-anchor-id="example-1"><span class="header-section-number">1.5.1.1</span> Example 1</h4>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}\frac{x-2}{x-2}.
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Direct substitution gives</p>
+<p><span class="math display">\[
+\frac00,
+\]</span></p>
+<p>which is indeterminate.</p>
+<p>However,</p>
+<p><span class="math display">\[
+\frac{x-2}{x-2}=1
+\qquad(x\neq2),
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\boxed{\lim_{x\rightarrow2}\frac{x-2}{x-2}=1.}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-2" class="level4" data-number="1.5.1.2">
+<h4 data-number="1.5.1.2" class="anchored" data-anchor-id="example-2"><span class="header-section-number">1.5.1.2</span> Example 2</h4>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}\frac{(x-2)^2}{x-2}.
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Direct substitution again gives</p>
+<p><span class="math display">\[
+\frac00.
+\]</span></p>
+<p>Factor the numerator:</p>
+<p><span class="math display">\[
+\frac{(x-2)^2}{x-2}=x-2.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{\lim_{x\rightarrow2}(x-2)=0.}
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="example-3" class="level4" data-number="1.5.1.3">
+<h4 data-number="1.5.1.3" class="anchored" data-anchor-id="example-3"><span class="header-section-number">1.5.1.3</span> Example 3</h4>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2}\frac{x^2-4}{x-2}.
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Direct substitution gives</p>
+<p><span class="math display">\[
+\frac00.
+\]</span></p>
+<p>Factor the numerator:</p>
+<p><span class="math display">\[
+x^2-4=(x-2)(x+2).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{x^2-4}{x-2}=x+2,
+\qquad x\neq2.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{\lim_{x\rightarrow2}\frac{x^2-4}{x-2}=4.}
+\]</span></p>
+</details>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Important Observation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In all the examples, direct substiution led to <span class="math inline">\(\frac{0}{0}\)</span> but simplifcation of the function helped us to find <strong>determinate</strong> values of limits. This means, the function cannot be evaluated a given value of x. However, the values of the function can be computed in the vicinity.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="limits-of-trignometric-functions" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="limits-of-trignometric-functions"><span class="header-section-number">1.6</span> Limits of Trignometric Functions</h2>
+<p>Like algebraic functions, we can use direct substitution to find limits of trignometric functions as well. This approach works as long as the function has a value at the point of interest. However, there are cases where direct substitutions do not work as the function is indeterminate at the point. In that case we can again get clever and see what the value is in the vicinity of the point to estimate a limit.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Radians versus Degrees
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The angle is always measured in radians, when we are dealing with limits and calculus of trignometric functions. This is because values near 0 radians are close to zero. However, values near 0<span class="math inline">\(^o\)</span> are actually near <span class="math inline">\(\frac{\pi}{180}x^o\)</span> radians $ x $ radians</p>
+</div>
+</div>
+<section id="example-1-1" class="level4" data-number="1.6.0.1">
+<h4 data-number="1.6.0.1" class="anchored" data-anchor-id="example-1-1"><span class="header-section-number">1.6.0.1</span> Example 1</h4>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow 0}\frac{sin(x)}{x}.
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+<p>Direct substitution gives</p>
+<p><span class="math display">\[
+\frac00,
+\]</span></p>
+<p>which is indeterminate.</p>
+<p>However, as x <span class="math inline">\(\rightarrow\)</span> 0 (radians), the value of sin(x) also <span class="math inline">\(\rightarrow\)</span> x. Therefore, <span class="math inline">\(lim_{x\rightarrow 0}\frac{sin(x)}{x}  \approx lim_{x\rightarrow 0}\frac{x)}{x} = 1\)</span></p>
+</details>
+<hr>
+</section>
+</section>
+<section id="interactive-exploration-sinxx" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="interactive-exploration-sinxx"><span class="header-section-number">1.7</span> Interactive Exploration: <span class="math inline">\(\sin(x)/x\)</span></h2>
+<p>Move the slider toward zero and compare the behavior of</p>
+<ul>
+<li><span class="math inline">\(\dfrac{\sin(x)}{x}\)</span> where <span class="math inline">\(x\)</span> is measured in <strong>radians</strong></li>
+</ul>
+<iframe src="https://marimo.app/github/vuddameri/Calculus-I/blob/main/Code/sinxbyx.py?embed=true" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-forms" allow="microphone" allowfullscreen="" width="100%" height="700" frameborder="0">
+</iframe>
+</section>
+<section id="limits-of-exponential-functions" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="limits-of-exponential-functions"><span class="header-section-number">1.8</span> Limits of Exponential Functions</h2>
+<p>The exponential function <span class="math inline">\(e^x\)</span> is continuous everywhere. So, in most cases, the limit can be obtained by direct substitution. However, as <span class="math inline">\(x \rightarrow \infty\)</span> the value of <span class="math inline">\(e^x\)</span> approaches infinity. In a similar manner, <span class="math inline">\(e^{-x}\)</span> approaches <span class="math inline">\(\infinity\)</span> as $ x $. There are some special rules that you will learn later that can be used in such instances. In such cases, you can always build intuition by graphing the function around the indeterminate point and see what the values are. We shall look at two examples here.</p>
+<section id="example-1-2" class="level4" data-number="1.8.0.1">
+<h4 data-number="1.8.0.1" class="anchored" data-anchor-id="example-1-2"><span class="header-section-number">1.8.0.1</span> Example 1</h4>
+<p>Evaluate</p>
+<p><span class="math display">\[
+\lim_{x\rightarrow2} f(x) = e^x -1.
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+Direct substitution gives $ f(2) = e^2 - 1 - 1 = 6.389 $
+</details>
+</section>
+<section id="example-2-1" class="level4" data-number="1.8.0.2">
+<h4 data-number="1.8.0.2" class="anchored" data-anchor-id="example-2-1"><span class="header-section-number">1.8.0.2</span> Example 2</h4>
+<p>Evaluate <span class="math display">\[
+\lim_{x\rightarrow 0} f(x) = \frac{e^x -1}{x}
+\]</span></p>
+<details>
+<summary>
+<strong>Show Solution</strong>
+</summary>
+Direct substitution gives us <span class="math inline">\(\frac{e^0 -1}{0} = \frac{0}{0}\)</span> Therefore, the solution is indeterminate. Later in the course you will be exposed to advanced techniques that will help you solve this problem analytically. See the interactive exploration below for an intuitive answer.
+</details>
+</section>
+</section>
+<section id="interactive-exploration-lim_x-rightarrow-0fracex-1x" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="interactive-exploration-lim_x-rightarrow-0fracex-1x"><span class="header-section-number">1.9</span> Interactive Exploration: <span class="math inline">\(\lim_{x \rightarrow 0}\frac{e^x-1}{x}\)</span></h2>
+<p>Move the slider toward zero and guess what the value of limit would be!!</p>
+<iframe src="https://marimo.app/github/vuddameri/Calculus-I/blob/main/Code/explim.py?embed=true" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-forms" allow="microphone" allowfullscreen="" width="100%" height="700" frameborder="0">
+</iframe>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Indeterminate versus Unbounded
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value of the exponent <span class="math inline">\(e^x\)</span> approaches <span class="math inline">\(\infty\)</span> as x approaches <span class="math inline">\(\infty\)</span>. Similarly the value of <span class="math inline">\(-e^{x}\)</span> approaches <span class="math inline">\(-\infty\)</span> as <span class="math inline">\(x \rightarrow \infty\)</span> and <span class="math inline">\(e^{-x} \rightarrow  \infty as x  \rightarrow 0\)</span>. In such cases, the limits are exhibiting divergent behavior and referred to as being <strong>unbounded</strong>. The limit of these functions exist (as there is no indeterminacy) but the value is so large <span class="math inline">\(+\infty\)</span> (or small if <span class="math inline">\(\infty\)</span>) and changes very rapidly. The same situation generally occurs when the denominator of the function goes to zero (but the numerator is not zero).</p>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.10</span> Summary</h2>
+<p>In this section, we introduced the concept of a <strong>limit</strong>, one of the fundamental ideas of calculus. A limit describes the behavior of a function as the independent variable approaches a particular value. The emphasis is on what happens <strong>near</strong> the point of interest rather than <strong>at</strong> the point itself.</p>
+<p>When evaluating a limit, <strong>direct substitution</strong> is often the first step. If substitution produces a finite real number, then the limit has been found. However, if substitution produces an expression involving division by zero, additional analysis may be required. In general, we use concepts from college algebra (factorization, simplification or simplifications via partial fractions) to evaluate the limit.</p>
+<p>The form</p>
+<p><span class="math display">\[
+\frac{0}{0}
+\]</span></p>
+<p>is called an <strong>indeterminate form</strong>. It does <strong>not</strong> determine the value of the limit. A limit resulting in (0/0) may be a finite number, may be infinite, or may not exist at all. Further mathematical analysis is necessary.</p>
+<p>On the other hand, when the numerator approaches a <strong>nonzero</strong> number while the denominator approaches zero, the function typically becomes <strong>unbounded</strong>. Depending on the direction of approach, the limit may approach (+) or (-). This behavior is <strong>not</strong> indeterminate.</p>
+<p>Finally, a two-sided limit exists only when the left-hand and right-hand limits both exist and are equal.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="check-your-understanding"><span class="header-section-number">1.11</span> Check Your Understanding</h2>
+<div class="quizdown">
+# 1. A limit is primarily concerned with
+
+1. [ ] the value of a function exactly at a point.
+2. [x] the behavior of a function as x approaches a point.
+3. [ ] the derivative of a function.
+4. [ ] whether the function is increasing.
+
+# 2. True or False
+
+If direct substitution into a limit produces the form \(0/0\), then the limit is equal to zero.
+
+1. [ ] True
+2. [x] False
+
+# 3. Direct substitution into a limit produces the form \(5/0\). What is the best conclusion?
+
+1. [ ] The limit equals 5.
+2. [ ] The limit is an indeterminate form.
+3. [x] The function becomes unbounded, and the sign must be determined.
+4. [ ] The limit does not exist.
+
+# 4. True or False
+
+An infinite limit is an indeterminate form.
+
+1. [ ] True
+2. [x] False
+
+# 5. Which statement best describes the difference between an indeterminate form and an infinite limit?
+
+1. [ ] Both always mean the limit does not exist.
+2. [ ] An indeterminate form determines the limit, whereas an infinite limit does not.
+3. [x] An indeterminate form requires further analysis, whereas an infinite limit describes a function that grows without bound.
+4. [ ] There is no difference between them.
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answers and Explanation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Question 1</strong></p>
+<p>A limit describes what happens <strong>near</strong> a point, not necessarily what happens <strong>at</strong> the point.</p>
+<hr>
+<p><strong>Question 2</strong></p>
+<p><strong>False.</strong> The form</p>
+<p><span class="math display">\[
+\frac{0}{0}
+\]</span></p>
+<p>is called an <strong>indeterminate form</strong> because direct substitution does not determine the value of the limit. The limit may be finite, infinite, or may not exist.</p>
+<hr>
+<p><strong>Question 3</strong></p>
+<p>When the numerator approaches a nonzero number while the denominator approaches zero, the quotient becomes arbitrarily large in magnitude. The only remaining question is whether the function approaches (+) or (-), which depends on the direction of approach.</p>
+<hr>
+<p><strong>Question 4</strong></p>
+<p><strong>False.</strong> An infinite limit is <strong>not</strong> an indeterminate form. It describes a function whose values grow without bound.</p>
+<hr>
+<p><strong>Question 5</strong></p>
+<p>The indeterminate form</p>
+<p><span class="math display">\[
+\frac{0}{0}
+\]</span></p>
+<p>tells us that direct substitution has failed and more analysis is required. An infinite limit, on the other hand, describes a specific limiting behavior: the function becomes arbitrarily large (or arbitrarily negative) as the independent variable approaches a particular value.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
