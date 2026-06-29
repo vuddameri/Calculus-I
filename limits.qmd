@@ -1,0 +1,920 @@
+# Limits
+
+## Motivation to study Limits
+There are many instances when we cannot get an exact measurement at a given point in time or at a required location.  In such cases, it is natural for us  to take a measurement at a nearby location or time and use that as an estimate.  This idea is mathematically captured using the idea of a Limit.
+
+
+<video controls width="700">
+  <source src="Videos/elevator.webm" type="video/webm">
+</video>
+
+
+The elevator is an important example of a limit.  When we press the button to go to a certain floor, the elevator's goal is to make sure the floor of the elevator is as close to the floor of the building.  The elevator floor may not always be perfectly lines with the building's floor but as long as it is close enough, it will work just fine.  Elevator controls make sure that the differences in the elevations of the floor of the elevator and the building approach zero (or get as close to each other as possible).
+
+::: {.callout-tip}
+## Tip
+
+Limits come in to play because we cannot make precise measurements at a point of interest.  We can only estimate the value within a certain limit.
+
+:::
+## Mathematical Definition of Limits
+
+In mathematics we define limits using the following nomenclature:
+
+$$
+\lim_{x \rightarrow a} f(x)
+$$
+What the above equation means is that we want to find the limit of the function f(x) as x **tends towards** the value 'a'.  If 'a' is a real number we can approach (or tend towards) either from a lower number 'a-' or a higher number 'a+'  that are not equal to 'a' but close enough.
+
+::: {.callout-important}
+## 🤔 Thought Experiment
+
+Suppose your Calculus class is officially scheduled from **8:00 AM to 8:50 AM**.
+
+Would it be mathematically more appropriate to describe the class as
+
+- beginning **at exactly 8:00 AM** and ending **at exactly 8:50 AM**, or
+- beginning as time **approaches** 8:00 AM and ending as time **approaches** 8:50 AM?
+
+Think carefully before revealing the answer.
+
+<details>
+<summary><strong>Show Answer</strong></summary>
+
+A **limit** describes what happens **as we approach** a point, not necessarily what happens **at** the point itself.
+
+Officially, the class begins at **8:00 AM** and ends at **8:50 AM**. In practice, however, students may arrive early, the instructor may wait briefly before beginning, and the class may end a minute or two after the scheduled time.
+
+This illustrates an important distinction in calculus:
+
+- A **limit** describes behavior **near** a point.
+- A **function value** describes what happens **at** the point.
+
+Sometimes these are the same, sometimes they are different.  Calculus helps make this distinction.
+
+</details>
+
+:::
+
+## Important Properties of Limits
+
+The following properties allow us to evaluate many limits without using the formal definition. They are collectively known as the **Limit Laws**.
+
+::: {.callout-important}
+## ⭐ Key Idea
+
+If the limits of two functions exist individually, then the limit of many combinations of those functions can be found by simply applying the corresponding algebraic operation.
+:::
+
+### 1. Limit of a Constant
+
+If \(c\) is a constant,
+
+$$
+\lim_{x \rightarrow a} c = c
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow 5} 8 = 8
+$$
+
+---
+
+### 2. Limit of the Identity Function
+
+$$
+\lim_{x\rightarrow a} x = a
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow 7} x = 7
+$$
+
+---
+
+### 3. Constant Multiple Law
+
+If \(c\) is a constant,
+
+$$
+\lim_{x\rightarrow a} c\,f(x)
+=
+c\lim_{x\rightarrow a}f(x)
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow2}5x
+=
+5\left(\lim_{x\rightarrow2}x\right)
+=
+10
+$$
+
+---
+
+### 4. Sum Law
+
+$$
+\lim_{x\rightarrow a}[f(x)+g(x)]
+=
+\lim_{x\rightarrow a}f(x)
++
+\lim_{x\rightarrow a}g(x)
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow3}(x^2+2x)
+=
+9+6
+=
+15
+$$
+
+---
+
+### 5. Difference Law
+
+$$
+\lim_{x\rightarrow a}[f(x)-g(x)]
+=
+\lim_{x\rightarrow a}f(x)
+-
+\lim_{x\rightarrow a}g(x)
+$$
+
+---
+
+### 6. Product Law
+
+$$
+\lim_{x\rightarrow a}[f(x)g(x)]
+=
+\left(\lim_{x\rightarrow a}f(x)\right)
+\left(\lim_{x\rightarrow a}g(x)\right)
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow2}x(x+1)
+=
+2(3)
+=
+6
+$$
+
+---
+
+### 7. Quotient Law
+
+Provided
+
+$$
+\lim_{x\rightarrow a}g(x)\neq0,
+$$
+
+then
+
+$$
+\lim_{x\rightarrow a}
+\frac{f(x)}{g(x)}
+=
+\frac{\lim_{x\rightarrow a}f(x)}
+{\lim_{x\rightarrow a}g(x)}
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow4}
+\frac{x+1}{x-2}
+=
+\frac{5}{2}
+$$
+
+::: {.callout-warning}
+## Common Mistake
+
+The Quotient Law **cannot** be applied if the denominator approaches zero.
+
+Expressions such as
+
+$$
+\frac{0}{0}
+\qquad\text{or}\qquad
+\frac{5}{0}
+$$
+
+require additional analysis.
+:::
+
+---
+
+### 8. Power Law
+
+For any positive integer \(n\),
+
+$$
+\lim_{x\rightarrow a}[f(x)]^n
+=
+\left(\lim_{x\rightarrow a}f(x)\right)^n
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow3}x^4
+=
+81
+$$
+
+---
+
+### 9. Root Law
+
+Provided the root is defined,
+
+$$
+\lim_{x\rightarrow a}\sqrt[n]{f(x)}
+=
+\sqrt[n]{\lim_{x\rightarrow a}f(x)}
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow9}\sqrt{x}
+=
+3
+$$
+
+---
+
+### 10. Polynomial Functions
+
+For any polynomial,
+
+$$
+\lim_{x\rightarrow a}P(x)
+=
+P(a)
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow2}
+(x^3-4x+1)
+=
+8-8+1
+=
+1
+$$
+
+---
+
+### 11. Rational Functions
+
+If \(Q(a)\neq0\),
+
+$$
+\lim_{x\rightarrow a}
+\frac{P(x)}{Q(x)}
+=
+\frac{P(a)}{Q(a)}
+$$
+
+**Example**
+
+$$
+\lim_{x\rightarrow1}
+\frac{x^2+1}{x+2}
+=
+\frac23
+$$
+
+::: {.callout-tip}
+## Tip
+
+Always try **direct substitution first**.
+
+If substitution does **not** produce an indeterminate form such as
+
+$$
+\frac00,
+\qquad
+\infty-\infty,
+\qquad
+0\cdot\infty,
+$$
+
+then the limit can usually be evaluated immediately using the Limit Laws.
+:::
+
+## Worked Examples
+
+### Example 1 — Constant Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow 3} 12
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Since the function is a constant,
+
+$$
+\lim_{x\rightarrow 3}12 = 12.
+$$
+
+</details>
+
+---
+
+### Example 2 — Identity Function
+
+Evaluate
+
+$$
+\lim_{x\rightarrow 8}x
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Using the Identity Law,
+
+$$
+\lim_{x\rightarrow8}x=8.
+$$
+
+</details>
+
+---
+
+### Example 3 — Constant Multiple Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow4}7x
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Apply the Constant Multiple Law.
+
+$$
+\begin{aligned}
+\lim_{x\rightarrow4}7x
+&=7\lim_{x\rightarrow4}x\\
+&=7(4)\\
+&=28.
+\end{aligned}
+$$
+
+</details>
+
+---
+
+### Example 4 — Sum Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}(x^2+5x)
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Using the Sum Law,
+
+$$
+\begin{aligned}
+\lim_{x\rightarrow2}(x^2+5x)
+&=\lim_{x\rightarrow2}x^2+\lim_{x\rightarrow2}5x\\
+&=4+10\\
+&=14.
+\end{aligned}
+$$
+
+</details>
+
+---
+
+### Example 5 — Difference Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow3}(2x^2-x)
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+$$
+\begin{aligned}
+\lim_{x\rightarrow3}(2x^2-x)
+&=2(9)-3\\
+&=15.
+\end{aligned}
+$$
+
+</details>
+
+---
+
+### Example 6 — Product Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}x(x+4)
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+$$
+\begin{aligned}
+\lim_{x\rightarrow2}x(x+4)
+&=\left(\lim_{x\rightarrow2}x\right)
+\left(\lim_{x\rightarrow2}(x+4)\right)\\
+&=2(6)\\
+&=12.
+\end{aligned}
+$$
+
+</details>
+
+---
+
+### Example 7 — Quotient Law
+
+Evaluate
+
+$$
+\lim_{x\rightarrow5}\frac{x+3}{2x-1}
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Since the denominator is not zero,
+
+$$
+\begin{aligned}
+\lim_{x\rightarrow5}\frac{x+3}{2x-1}
+&=\frac{5+3}{10-1}\\
+&=\frac89.
+\end{aligned}
+$$
+
+</details>
+
+---
+
+### Example 8 — Polynomial Function
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}(x^3-4x+5)
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Polynomials are continuous, so substitute directly.
+
+$$
+2^3-4(2)+5=8-8+5=5.
+$$
+
+</details>
+
+---
+
+### Example 9 — Rational Function
+
+Evaluate
+
+$$
+\lim_{x\rightarrow3}\frac{x^2+1}{x+1}
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Since the denominator is not zero,
+
+$$
+\frac{3^2+1}{3+1}
+=
+\frac{10}{4}
+=
+\frac52.
+$$
+
+</details>
+
+---
+
+::: {.callout-important}
+## ⭐ Observation
+
+Notice that **every one of these examples was solved by direct substitution**.
+
+This works because none of the substitutions produced an indeterminate form such as
+
+$$
+\frac00.
+$$
+
+When direct substitution produces an indeterminate form, we need additional techniques, which will be introduced in the next section.
+:::
+
+## Indeterminate Forms
+
+In the previous section, we saw that many limits can be evaluated simply by substituting the value of \(x\) into the function. Unfortunately, direct substitution does not always produce a meaningful answer. Sometimes it produces an **indeterminate form**.
+
+::: {.callout-important}
+## Key Idea
+
+An **indeterminate form** does **not** mean that the limit does not exist.
+
+Instead, it means that **direct substitution is inconclusive**, and additional mathematical techniques are required to determine the limit.
+:::
+
+The most common indeterminate forms encountered in Calculus I are
+
+| Indeterminate Form | Comments |
+|--------------------|----------|
+| $\displaystyle \frac{0}{0}$ | Most common; often resolved by factoring or algebraic simplification. |
+| $\displaystyle \frac{\infty}{\infty}$ | Common when studying limits at infinity. |
+| $0\cdot\infty$ | Product of two competing quantities. |
+| $\infty-\infty$ | Difference of two unbounded quantities. |
+| $0^0$ | Exponential indeterminate form. |
+| $1^\infty$ | Exponential indeterminate form. |
+| $\infty^0$ | Exponential indeterminate form. |
+
+::: {.callout-warning}
+## Common Mistake
+
+Many students mistakenly believe that
+
+$$
+\frac00 = 1.
+$$
+
+This is **not true**.
+
+The expression
+
+$$
+\frac00
+$$
+
+is **undefined** and is called an **indeterminate form** because many different limits can produce it.
+:::
+
+### How to Tackle Indeterminate Forms?
+
+When the direction substitution leads to $\frac{0}{0}$ then we have to get clever about obtaining limits.  One approach is to simplify the expression before taking the limits.  There are many techniques to simplify including factoring, rationalization, and L'Hôpital's Rule.  Let us first look at some motivating examples.
+
+#### Example 1
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}\frac{x-2}{x-2}.
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution gives
+
+$$
+\frac00,
+$$
+
+which is indeterminate.
+
+However,
+
+$$
+\frac{x-2}{x-2}=1
+\qquad(x\neq2),
+$$
+
+so
+
+$$
+\boxed{\lim_{x\rightarrow2}\frac{x-2}{x-2}=1.}
+$$
+
+</details>
+
+---
+
+#### Example 2
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}\frac{(x-2)^2}{x-2}.
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution again gives
+
+$$
+\frac00.
+$$
+
+Factor the numerator:
+
+$$
+\frac{(x-2)^2}{x-2}=x-2.
+$$
+
+Therefore,
+
+$$
+\boxed{\lim_{x\rightarrow2}(x-2)=0.}
+$$
+
+</details>
+
+---
+
+#### Example 3
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2}\frac{x^2-4}{x-2}.
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution gives
+
+$$
+\frac00.
+$$
+
+Factor the numerator:
+
+$$
+x^2-4=(x-2)(x+2).
+$$
+
+Therefore,
+
+$$
+\frac{x^2-4}{x-2}=x+2,
+\qquad x\neq2.
+$$
+
+Hence,
+
+$$
+\boxed{\lim_{x\rightarrow2}\frac{x^2-4}{x-2}=4.}
+$$
+
+</details>
+
+::: {.callout-tip}
+## Important Observation
+
+In all the examples, direct substiution led to $\frac{0}{0}$ but simplifcation of the function helped us to find **determinate** values of limits.  This means, the function cannot be evaluated a given value of x.  However, the values of the function can be computed in the vicinity.
+
+:::
+
+## Limits of Trignometric Functions
+Like algebraic functions, we can use direct substitution to find limits of trignometric functions as well.  This approach works as long as the function has a value at the point of interest.  However, there are cases where direct substitutions do not work as the function is indeterminate at the point.  In that case we can again get clever and see what the value is in the vicinity of the point to estimate a limit.
+
+::: {.callout-tip}
+## Radians versus Degrees
+
+The angle is always measured in radians, when we are dealing with limits and calculus of trignometric functions.  This is because values near 0 radians are close to zero.  However, values near 0$^o$ are actually near $\frac{\pi}{180}x^o$ radians $\approx 0.01745 \times x $ radians
+
+:::
+
+#### Example 1
+
+Evaluate
+
+$$
+\lim_{x\rightarrow 0}\frac{sin(x)}{x}.
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution gives
+
+$$
+\frac00,
+$$
+
+which is indeterminate.
+
+However, as x $\rightarrow$ 0 (radians), the value of sin(x) also $\rightarrow$ x.  Therefore, $lim_{x\rightarrow 0}\frac{sin(x)}{x}  \approx lim_{x\rightarrow 0}\frac{x)}{x} = 1$
+
+
+</details>
+
+---
+
+## Interactive Exploration: $\sin(x)/x$
+
+Move the slider toward zero and compare the behavior of
+
+- $\dfrac{\sin(x)}{x}$ where $x$ is measured in **radians**
+
+<iframe
+    src="http://localhost:2718"
+    width="100%"
+    height="750"
+    style="
+        border:1px solid #cccccc;
+        border-radius:8px;
+        overflow:hidden;
+    ">
+</iframe>
+
+##  Limits of Exponential Functions
+The exponential function $e^x$ is continuous everywhere.  So, in most cases, the limit  can be obtained by direct substitution.  However, as $x \rightarrow \infty$ the value  of $e^x$ approaches infinity.  In a similar manner, $e^{-x}$ approaches $\infinity$ as $ x \rightarrow 0 $.  There are some special rules that you will learn later that can be used in such instances.  In such cases, you can always build intuition by graphing the function around the indeterminate point and see what the values are.  We shall look at two examples here.
+
+#### Example 1
+
+Evaluate
+
+$$
+\lim_{x\rightarrow2} f(x) = e^x -1.
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution gives $ f(2) = e^2 - 1 \approx 7.389 - 1 = 6.389 $
+</details>
+
+#### Example 2
+
+Evaluate
+$$
+\lim_{x\rightarrow 0} f(x) = \frac{e^x -1}{x}
+$$
+
+<details>
+<summary><strong>Show Solution</strong></summary>
+
+Direct substitution gives us $\frac{e^0 -1}{0} = \frac{0}{0}$  Therefore, the solution is indeterminate.  Later in the course you will be exposed to advanced techniques that will help you solve this problem analytically.  See the interactive exploration below for an intuitive answer.
+</details>
+
+## Interactive Exploration: $\lim_{x \rightarrow 0}\frac{e^x-1}{x}$
+
+Move the slider toward zero and guess what the value of limit would be!!
+
+<iframe
+    src="http://localhost:2719"
+    width="100%"
+    height="750"
+    style="
+        border:1px solid #cccccc;
+        border-radius:8px;
+        overflow:hidden;
+    ">
+</iframe>
+
+::: {.callout-tip}
+## Indeterminate versus Unbounded
+
+The value of the exponent $e^x$ approaches $\infty$ as x approaches $\infty$.  Similarly the value of $-e^{x}$ approaches $-\infty$ as $x \rightarrow \infty$ and $e^{-x} \rightarrow  \infty as x  \rightarrow 0$.  In such cases, the limits are exhibiting divergent behavior and referred to as being **unbounded**.  The limit of these functions exist (as there is no indeterminacy) but the value is so large $+\infty$ (or small if $\infty$) and changes very rapidly.  The same situation generally occurs when the denominator of the function goes to zero (but the numerator is not zero).
+
+:::
+
+## Summary
+
+In this section, we introduced the concept of a **limit**, one of the fundamental ideas of calculus. A limit describes the behavior of a function as the independent variable approaches a particular value. The emphasis is on what happens **near** the point of interest rather than **at** the point itself.
+
+When evaluating a limit, **direct substitution** is often the first step. If substitution produces a finite real number, then the limit has been found. However, if substitution produces an expression involving division by zero, additional analysis may be required.  In general,  we use concepts from college algebra (factorization, simplification or simplifications via partial fractions) to evaluate the limit.
+
+The form
+
+$$
+\frac{0}{0}
+$$
+
+is called an **indeterminate form**. It does **not** determine the value of the limit. A limit resulting in \(0/0\) may be a finite number, may be infinite, or may not exist at all. Further mathematical analysis is necessary.
+
+On the other hand, when the numerator approaches a **nonzero** number while the denominator approaches zero, the function typically becomes **unbounded**. Depending on the direction of approach, the limit may approach \(+\infty\) or \(-\infty\). This behavior is **not** indeterminate.
+
+Finally, a two-sided limit exists only when the left-hand and right-hand limits both exist and are equal.
+
+---
+
+## Check Your Understanding
+
+```quizdown
+# 1. A limit is primarily concerned with
+
+1. [ ] the value of a function exactly at a point.
+2. [x] the behavior of a function as x approaches a point.
+3. [ ] the derivative of a function.
+4. [ ] whether the function is increasing.
+
+# 2. True or False
+
+If direct substitution into a limit produces the form \(0/0\), then the limit is equal to zero.
+
+1. [ ] True
+2. [x] False
+
+# 3. Direct substitution into a limit produces the form \(5/0\). What is the best conclusion?
+
+1. [ ] The limit equals 5.
+2. [ ] The limit is an indeterminate form.
+3. [x] The function becomes unbounded, and the sign must be determined.
+4. [ ] The limit does not exist.
+
+# 4. True or False
+
+An infinite limit is an indeterminate form.
+
+1. [ ] True
+2. [x] False
+
+# 5. Which statement best describes the difference between an indeterminate form and an infinite limit?
+
+1. [ ] Both always mean the limit does not exist.
+2. [ ] An indeterminate form determines the limit, whereas an infinite limit does not.
+3. [x] An indeterminate form requires further analysis, whereas an infinite limit describes a function that grows without bound.
+4. [ ] There is no difference between them.
+```
+
+::: {.callout-tip collapse="true"}
+## Answers and Explanation
+
+**Question 1**
+
+A limit describes what happens **near** a point, not necessarily what happens **at** the point.
+
+---
+
+**Question 2**
+
+**False.** The form
+
+$$
+\frac{0}{0}
+$$
+
+is called an **indeterminate form** because direct substitution does not determine the value of the limit. The limit may be finite, infinite, or may not exist.
+
+---
+
+**Question 3**
+
+When the numerator approaches a nonzero number while the denominator approaches zero, the quotient becomes arbitrarily large in magnitude. The only remaining question is whether the function approaches \(+\infty\) or \(-\infty\), which depends on the direction of approach.
+
+---
+
+**Question 4**
+
+**False.** An infinite limit is **not** an indeterminate form. It describes a function whose values grow without bound.
+
+---
+
+**Question 5**
+
+The indeterminate form
+
+$$
+\frac{0}{0}
+$$
+
+tells us that direct substitution has failed and more analysis is required. An infinite limit, on the other hand, describes a specific limiting behavior: the function becomes arbitrarily large (or arbitrarily negative) as the independent variable approaches a particular value.
+
+:::

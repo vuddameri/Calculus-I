@@ -1,0 +1,20 @@
+---
+title: "Quiz Test"
+filters:
+  - quizdown
+---
+
+# Limits Quiz
+
+```quizdown
+# Question 1
+
+A limit is primarily concerned with
+
+1. [ ] what happens exactly at a point.
+2. [x] what happens near a point.
+3. [ ] whether the function is increasing.
+4. [ ] the slope of the function.
+
+> Correct! A limit describes the behavior of a function as \(x\) approaches a point.
+```
