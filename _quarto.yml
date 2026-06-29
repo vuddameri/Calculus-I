@@ -1,15 +1,25 @@
 project:
   type: website
 
+website:
+  title: "Calculus I"
+  page-navigation: true
+
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    toc-depth: 3
     number-sections: true
+    smooth-scroll: true
+    code-fold: false
+    code-copy: true
 
 execute:
   echo: false
+  warning: false
+  message: false
 
 filters:
   - quizdown
