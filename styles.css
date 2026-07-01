@@ -155,3 +155,73 @@ div.thought::before {
 div.thought details {
     margin-top: 1em;
 }
+
+/* =========================================
+ *  Hero Banner
+ = *======================================== */
+
+.hero-banner {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+
+    background: linear-gradient(
+        135deg,
+        #003366,
+        #0055aa
+    );
+
+    color: white;
+    border-radius: 12px;
+}
+
+.hero-banner h1 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.hero-banner h3 {
+    color: white;
+    font-weight: normal;
+}
+
+/* =========================================
+ *  Lesson Cards
+ = *======================================== */
+
+.lesson-card {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background-color: #fafafa;
+
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.lesson-card h2 {
+    margin-top: 0;
+}
+
+/* =========================================
+ *  Coming Soon
+ = *======================================== */
+
+.coming-soon {
+    border-left: 4px solid #0055aa;
+    padding-left: 1rem;
+    margin-top: 1rem;
+}
+
+/* =========================================
+ *  General Layout
+ = *======================================== */
+
+.quarto-title-banner {
+    display: none;
+}
