@@ -5,6 +5,15 @@ website:
   title: "Calculus I"
   page-navigation: true
 
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: limits.qmd
+        text: Limits
+      - href: derivatives.qmd
+        text: Derivatives
+
 format:
   html:
     theme: cosmo

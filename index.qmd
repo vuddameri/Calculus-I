@@ -1,0 +1,97 @@
+---
+title: ""
+toc: false
+number-sections: false
+---
+
+::: {.hero-banner}
+
+# Interactive Calculus I
+
+### Learn Calculus by Exploring, Experimenting, and Discovering
+
+This website combines interactive visualizations, simulations, and guided investigations to help you develop intuition before learning formulas.
+
+:::
+
+## Welcome
+
+Calculus is the mathematics of **change**.
+
+Rather than memorizing procedures, this course emphasizes:
+
+- Visual understanding
+- Interactive exploration
+- Real-world applications
+- Conceptual reasoning
+- Mathematical communication
+
+Many lessons include interactive **marimo notebooks** that allow you to manipulate parameters and observe how mathematical ideas emerge.
+
+## Course Modules
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div class="lesson-card">
+
+## 📈 Limits
+
+Explore the fundamental idea of a limit.
+
+- Average vs. instantaneous change
+- Numerical exploration
+- Graphical intuition
+- Interactive visualizations
+
+[Open Module →](limits.qmd)
+
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+<div class="lesson-card">
+
+## 🎢 Derivatives
+
+Discover derivatives through motion and change.
+
+- Speed and velocity
+- Tangent lines
+- Roller coaster exploration
+- Instantaneous rates of change
+
+[Open Module →](derivatives.qmd)
+
+</div>
+
+:::
+
+::::
+
+## Coming Soon
+
+<div class="coming-soon">
+
+- Chain Rule
+- Product Rule
+- Quotient Rule
+- Implicit Differentiation
+- Applications of Derivatives
+- Optimization
+- Related Rates
+
+</div>
+
+## About This Project
+
+This project was developed using:
+
+- Quarto
+- Python
+- marimo
+
+with the goal of creating an open and interactive learning environment for Calculus I students.
